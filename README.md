@@ -107,4 +107,52 @@ git reset --hard origin/master
 Search the working directory for foo():	
 git grep "foo()"
 
+12-Viewing project history
+git log
 
+If you also want to see complete diffs at each step, use
+
+git log -p
+
+Often the overview of the change is useful to get a feel of each step
+
+git log --stat --summary
+
+13-Exploring history
+git log
+commit c82a22c39cbc32576f64f5c6b3f24b99ea8149c7
+Author: Junio C Hamano <junkio@cox.net>
+Date:   Tue May 16 17:18:22 2006 -0700
+
+    merge-base: Clarify the comments on post processing.
+	
+We can give this name to git show to see the details about this commit.
+
+git show c82a22c39cbc32576f64f5c6b3f24b99ea8149c7
+
+git show HEAD^  # to see the parent of HEAD
+git show HEAD^^ # to see the grandparent of HEAD
+git show HEAD~4 # to see the great-great grandparent of HEAD	
+
+
+git log v2.5..v2.6            # commits between v2.5 and v2.6
+git log v2.5..                # commits since v2.5
+git log --since="2 weeks ago" # commits from the last 2 weeks
+git log v2.5.. Makefile       # commits since v2.5 which modify
+							  # Makefile
+							  
+14- git merge
+View file conflicts in a merge tool. Default is vimdiff
+git mergetool
+Assign a GUI tool:
+Meld:
+git config --global merge.tool meld
+git config --global mergetool.meld.cmd 'meld --diff $LOCAL $BASE $REMOTE --output $MERGED'
+or: meld $LOCAL $MERGED $REMOTE --output $MERGED
+or: meld $LOCAL $BASE $REMOTE --output $MERGED
+(preference of three panes ordered left to right)
+
+if user are using vimdiff then use below command.
+vimdiff	- edit two, three or four versions of a file with Vim and show differences
+vimdiff [options] file1 file2 [file3 [file4]]
+							  
